@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -8,20 +12,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TobaccoManager.Views;
-using TobaccoManager.Views.Auth;
 
-namespace TobaccoManager
+namespace TobaccoManager.Views.Auth
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Auth.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Auth : Page
     {
-        public MainWindow()
+        public Auth()
         {
             InitializeComponent();
-            MainFrame.Navigate(new Views.Auth.Auth());
+            AuthFrame.Navigate(new Login(AuthFrame));
         }
     }
 }

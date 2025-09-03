@@ -8,4 +8,22 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Views\Auth\leaf.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Auth\leaf.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Auth\Signup.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Style\" />
+  </ItemGroup>
+
 </Project>

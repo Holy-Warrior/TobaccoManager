@@ -1,0 +1,60 @@
+﻿<Page x:Class="TobaccoManager.Views.Auth.AccountRecover"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TobaccoManager.Views.Auth"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="400"
+      Title="AccountRecover" Background="#fffbe6">
+
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,20">
+
+        <!-- Title -->
+        <TextBlock Text="Recover Account"
+               FontSize="24"
+               Margin="0,0,0,20"/>
+
+        <!-- Username -->
+        <StackPanel Margin="0,0,0,10">
+            <TextBlock Text="Username:"/>
+            <TextBox x:Name="UsernameBox" Width="220"/>
+        </StackPanel>
+
+        <!-- Security Question -->
+        <StackPanel Margin="0,0,0,10">
+            <TextBlock Text="Security Question:"/>
+            <!-- Option 1: If you want predefined selectable questions -->
+            <ComboBox x:Name="QuestionBox" Width="220">
+                <ComboBoxItem Content="What is your favorite color?"/>
+                <ComboBoxItem Content="What is your first school?"/>
+                <ComboBoxItem Content="What was the name of your first pet?"/>
+            </ComboBox>
+            <!-- Option 2: If stored per user, bind a TextBlock instead -->
+            <!-- <TextBlock x:Name="StoredQuestion" Width="220"/> -->
+        </StackPanel>
+
+        <!-- Answer -->
+        <StackPanel Margin="0,0,0,10">
+            <TextBlock Text="Answer:"/>
+            <TextBox x:Name="AnswerBox" Width="220"/>
+        </StackPanel>
+
+        <!-- Recover Button -->
+        <Button Content="Recover"
+            Width="100"
+            Click="Recover_Click"/>
+
+        <!-- Back to Login -->
+        <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="0,20,0,0">
+            <TextBlock Text="Remembered your account? "
+                   VerticalAlignment="Center"/>
+            <Button Content="Login"
+                Click="BackToLogin_Click"
+                Style="{StaticResource HyperlinkButton}"/>
+        </StackPanel>
+    </StackPanel>
+
+</Page>
