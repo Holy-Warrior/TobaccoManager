@@ -17,9 +17,14 @@ TobaccoManager is a WPF application for managing tobacco-related workflows. This
  │    ├── RegisterPage.xaml
  │    └── RecoverPage.xaml
  │
- ├── [Dashboard]
- │    ├── DashboardPage.xaml
- │    └── [Components]
+ └── [Dashboard]
+      ├── Dashboard.xaml
+      ├── Products.xaml
+      ├── Calendar.xaml
+      └── Profile.xaml
+
+
+ /* │    └── [Components]
  │         ├── SummaryCard.xaml
  │         ├── ChartWidget.xaml
  │         └── NotificationsPanel.xaml
@@ -35,7 +40,7 @@ TobaccoManager is a WPF application for managing tobacco-related workflows. This
  │    └── ExportDialog.xaml
  │
  └── [Settings]
-      └── SettingsPage.xaml
+      └── SettingsPage.xaml */
 ```
 
 ## Screenshots
@@ -48,6 +53,9 @@ TobaccoManager is a WPF application for managing tobacco-related workflows. This
 
 ### Account Recovery
 ![Account Recovery](Assets/Screenshots/Auth%20Recover.png)
+
+### Dashboard
+![Dashboard](Assets/Screenshots/Dashboard.png)
 
 
 

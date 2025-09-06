@@ -27,10 +27,10 @@ namespace TobaccoManager.Views.Auth
             InitializeComponent();
             _authFrame = authFrame;
         }
-        
-        private void Login_Click(object sender, RoutedEventArgs e)
-        {
 
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {   
+            Application.Current.MainWindow.Content = new TobaccoManager.Views.Dashboard.Dashboard();
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e)
