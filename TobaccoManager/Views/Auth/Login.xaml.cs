@@ -30,7 +30,7 @@ namespace TobaccoManager.Views.Auth
 
         private void Login_Click(object sender, RoutedEventArgs e)
         {   
-            Application.Current.MainWindow.Content = new TobaccoManager.Views.Dashboard.Dashboard();
+            Application.Current.MainWindow.Content = new TobaccoManager.Views.Dashboard.Dash();
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e)

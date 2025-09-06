@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace TobaccoManager.Views.Dashboard
 {
     /// <summary>
-    /// Interaction logic for Dashboard.xaml
+    /// Interaction logic for Calendar.xaml
     /// </summary>
-    public partial class Dashboard : Page
+    public partial class Calendar : Page
     {
-        public Dashboard()
+        public Calendar()
         {
             InitializeComponent();
         }
