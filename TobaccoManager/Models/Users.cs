@@ -6,28 +6,27 @@ namespace TobaccoManager.Models
         /// Initializes a new User.
         /// </summary>
         /// <remarks>
-        /// For admins, set role to "admin".
+        /// All parameters are required.
         /// </remarks>
         /// <param name="name">User name (required).</param>
         /// <param name="email">User email (required).</param>
         /// <param name="password">User password (required).</param>
         /// <param name="securityQuestion">User security question (required).</param>
         /// <param name="securityAnswer">User security answer (required).</param>
-        /// <param name="role">User role, either "user" or "admin" (default is "user").</param>
+
         public User(
             string name,
             string email,
             string password,
             string securityQuestion,
-            string securityAnswer,
-            string role = "user")
+            string securityAnswer
+            )
         {
             Name = name;
             Email = email;
             Password = password;
             SecurityQuestion = securityQuestion;
             SecurityAnswer = securityAnswer;
-            Role = role;
         }
 
         [System.ComponentModel.DataAnnotations.Key]
@@ -38,6 +37,5 @@ namespace TobaccoManager.Models
         public required string Password { get; set; }
         public required string SecurityQuestion { get; set; }
         public required string SecurityAnswer { get; set; }
-        public required string Role { get; set; }
     }
 }
