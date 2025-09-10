@@ -22,6 +22,7 @@
             <StackPanel DockPanel.Dock="Top" > <!-- Do not touch me, i scream ERROR !!! -->
               <Label Content="My Username" FontSize="18" FontWeight="Bold" Margin="10"/>
               <Button x:Name="DashboardButton" Content="Dashboard" Margin="10" Click="Dashboard_Click" />
+              <Button x:Name="CustomersButton" Content="Customers" Margin="10" Background="White" Click="Customers_Click" />
               <Button x:Name="ProductsButton" Content="Products" Margin="10" Background="White" Click="Products_Click" />
               <Button x:Name="CalendarButton" Content="Calendar" Margin="10" Background="White" Click="Calendar_Click" />
               <Button x:Name="ProfileButton" Content="Profile" Margin="10" Background="White" Click="Profile_Click" />

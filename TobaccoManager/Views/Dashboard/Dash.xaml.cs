@@ -30,6 +30,7 @@ namespace TobaccoManager.Views.Dashboard
         {
             // Reset all buttons to default
             DashboardButton.Background = Brushes.White;
+            CustomersButton.Background = Brushes.White;
             ProductsButton.Background = Brushes.White;
             CalendarButton.Background = Brushes.White;
             ProfileButton.Background = Brushes.White;
@@ -46,6 +47,12 @@ namespace TobaccoManager.Views.Dashboard
         {
             HighlightNavButton(sender);
             DashMain.Content = new Dashboard();
+        }
+
+        private void Customers_Click(object sender, RoutedEventArgs e)
+        {
+            HighlightNavButton(sender);
+            DashMain.Content = new Customers();
         }
 
         private void Products_Click(object sender, RoutedEventArgs e)
