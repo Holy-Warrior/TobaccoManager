@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TobaccoManager.Models
 {
     public class User
@@ -14,6 +16,7 @@ namespace TobaccoManager.Models
         /// <param name="securityQuestion">User security question (required).</param>
         /// <param name="securityAnswer">User security answer (required).</param>
 
+        [SetsRequiredMembers]
         public User(
             string name,
             string email,

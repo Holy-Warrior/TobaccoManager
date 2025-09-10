@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TobaccoManager.Models
 {
     public class Customer
@@ -14,6 +16,8 @@ namespace TobaccoManager.Models
         /// <param name="name">Customer name (required).</param>
         /// <param name="phone">Customer phone (optional).</param>
         /// <param name="address">Customer address (optional).</param>
+
+        [SetsRequiredMembers]
         public Customer(
             string name,
             string? phone = null,
@@ -25,7 +29,7 @@ namespace TobaccoManager.Models
             Phone = phone;
             Address = address;
         }
-        
+
         [System.ComponentModel.DataAnnotations.Key]
         [System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

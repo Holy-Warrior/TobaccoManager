@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace TobaccoManager.Models
 {
     using System.Collections.Generic;
@@ -14,6 +16,8 @@ namespace TobaccoManager.Models
         /// <param name="price">Stock price (required).</param>
         /// <param name="dateReceived">Date the stock was received (required).</param>
         /// <param name="datePaid">Date the stock was paid (optional).</param>
+
+        [SetsRequiredMembers]
         public Stock(
             decimal price,
             DateOnly dateReceived,
@@ -40,7 +44,7 @@ namespace TobaccoManager.Models
         // Auto-generated: Grand Total Price (sum of all Bundle TotalPrices)
         public decimal GrandTotalPrice => Bundles?.Sum(b => b.TotalPrice) ?? 0m;
     }
-    
+
     public class Bundle
     {
         /// <summary>
@@ -49,6 +53,8 @@ namespace TobaccoManager.Models
         /// <param name="weight">Weight in kg (required).</param>
         /// <param name="pricePerKg">Price per kg (required).</param>
         /// <param name="leafGrade">Leaf grade (required).</param>
+        
+        [SetsRequiredMembers]
         public Bundle(
             decimal weight,
             decimal pricePerKg,
