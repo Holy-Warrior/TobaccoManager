@@ -18,32 +18,28 @@
         <!-- Username -->
         <StackPanel Margin="0,0,0,10">
             <TextBlock Text="Username:"/>
-            <TextBox x:Name="UsernameBox" Width="220"/>
+            <TextBox x:Name="UsernameTextBox" Width="220"/>
         </StackPanel>
+
+        <!-- Verify Button -->
+        <Button Content="Verify"
+            Width="100"
+            Click="VerifyUsername_Click"
+            Margin="0,0,0,10"/>
 
         <!-- Security Question -->
         <StackPanel Margin="0,0,0,10">
             <TextBlock Text="Security Question:"/>
-            <!-- Option 1: If you want predefined selectable questions -->
-            <ComboBox x:Name="QuestionBox" Width="220">
-                <ComboBoxItem Content="What is your favorite color?"/>
-                <ComboBoxItem Content="What is your first school?"/>
-                <ComboBoxItem Content="What was the name of your first pet?"/>
-            </ComboBox>
-            <!-- Option 2: If stored per user, bind a TextBlock instead -->
-            <!-- <TextBlock x:Name="StoredQuestion" Width="220"/> -->
-        </StackPanel>
-
-        <!-- Answer -->
-        <StackPanel Margin="0,0,0,10">
-            <TextBlock Text="Answer:"/>
-            <TextBox x:Name="AnswerBox" Width="220"/>
+            <TextBlock x:Name="StoredQuestion" Width="220" Margin="10,0,0,0"/>
+            <TextBox x:Name="AnswerBox" Width="220" IsEnabled="False"/>
         </StackPanel>
 
         <!-- Recover Button -->
         <Button Content="Recover"
+            x:Name="RecoverButton"
             Width="100"
-            Click="Recover_Click"/>
+            Click="Recover_Click"
+            IsEnabled="False"/>
 
         <!-- Back to Login -->
         <StackPanel Orientation="Horizontal"

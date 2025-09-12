@@ -62,7 +62,8 @@ namespace TobaccoManager.Views.Auth
 
         private void ForgotPassword_Click(object sender, RoutedEventArgs e)
         {
-            _authFrame.Navigate(new AccountRecover(_authFrame));
+            string username = UsernameBox.Text.Trim();
+            _authFrame.Navigate(new AccountRecover(_authFrame, username));
         }
 
         private void UsernameBox_KeyDown(object sender, KeyEventArgs e)
