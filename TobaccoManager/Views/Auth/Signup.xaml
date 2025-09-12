@@ -14,13 +14,17 @@
 
         <!-- Username, Email, Password, ConfirmPassword -->
         <TextBlock Text="Username"/>
-        <TextBox x:Name="UsernameBox" Width="220" Margin="0,0,0,10"/>
+        <TextBox x:Name="UsernameBox" Width="220" Margin="0,0,0,10"
+                 KeyDown="UsernameBox_KeyDown"/>
         <TextBlock Text="Email"/>
-        <TextBox x:Name="EmailBox" Width="220" Margin="0,0,0,10"/>
+        <TextBox x:Name="EmailBox" Width="220" Margin="0,0,0,10"
+                 KeyDown="EmailBox_KeyDown"/>
         <TextBlock Text="Password"/>
-        <PasswordBox x:Name="PasswordBox" Width="220" Margin="0,0,0,10"/>
+        <PasswordBox x:Name="PasswordBox" Width="220" Margin="0,0,0,10"
+                     KeyDown="PasswordBox_KeyDown"/>
         <TextBlock Text="Confirm Password"/>
-        <PasswordBox x:Name="ConfirmPasswordBox" Width="220" Margin="0,0,0,20"/>
+        <PasswordBox x:Name="ConfirmPasswordBox" Width="220" Margin="0,0,0,20"
+                     KeyDown="ConfirmPasswordBox_KeyDown"/>
 
         <!-- Signup Button -->
         <Button Content="Sign up" Click="Signup_Click" Width="100"/>
