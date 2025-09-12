@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TobaccoManager.Models;
+using TobaccoManager.Contexts;
 
 namespace TobaccoManager.Views.Auth
 {
@@ -29,8 +31,28 @@ namespace TobaccoManager.Views.Auth
         }
 
         private void Login_Click(object sender, RoutedEventArgs e)
-        {   
-            Application.Current.MainWindow.Content = new TobaccoManager.Views.Dashboard.Dash();
+        {
+            string username = UsernameBox.Text.Trim();
+            string password = PasswordBox.Password.Trim();
+
+            if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+                MessageBox.Show("Please enter both username and password", "Missing Information", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            using var db = new AppDbContext();
+            var user = db.Users.FirstOrDefault(u => u.Name == username && u.Password == password);
+
+            if (user != null)
+            {
+                Application.Current.MainWindow.Content = new TobaccoManager.Views.Dashboard.Dash();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void Signup_Click(object sender, RoutedEventArgs e)
@@ -41,6 +63,22 @@ namespace TobaccoManager.Views.Auth
         private void ForgotPassword_Click(object sender, RoutedEventArgs e)
         {
             _authFrame.Navigate(new AccountRecover(_authFrame));
+        }
+
+        private void UsernameBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PasswordBox.Focus();
+            }
+        }
+
+        private void PasswordBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Login_Click(sender, e);
+            }
         }
     }
 }

@@ -14,9 +14,11 @@
         
         <!-- Username & Password -->
         <TextBlock Text="Username"/>
-        <TextBox x:Name="UsernameBox" Width="220" Margin="0,0,0,10"/>
+        <TextBox x:Name="UsernameBox" Width="220" Margin="0,0,0,10" 
+                 KeyDown="UsernameBox_KeyDown" />
         <TextBlock Text="Password"/>
-        <PasswordBox x:Name="PasswordBox" Width="220" Margin="0,0,0,20"/>
+        <PasswordBox x:Name="PasswordBox" Width="220" Margin="0,0,0,20"
+                     KeyDown="PasswordBox_KeyDown"/>
 
         <!-- Login Button -->
         <Button Content="Login" Click="Login_Click" Width="100"/>
