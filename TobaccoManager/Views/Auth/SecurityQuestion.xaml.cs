@@ -32,6 +32,8 @@ namespace TobaccoManager.Views.Auth
             _username = username;
             _email = email;
             _password = password;
+
+            UsernameTextBlock.Text = _username;
         }
 
         private void CompleteSignupButton_Click(object sender, RoutedEventArgs e)
