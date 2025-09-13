@@ -47,14 +47,14 @@
                   SelectionMode="Single"
                   IsReadOnly="True"
                   Margin="0,0,10,0"
-                  MouseDoubleClick="CustomerGrid_MouseDoubleClick"
+                  MouseDoubleClick="CustomerGrid_MouseDoubleClick" VerticalAlignment="Center"
                   >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
                 <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*"/>
                 <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="2*"/>
-                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                <DataGridTemplateColumn Header="Actions" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" >

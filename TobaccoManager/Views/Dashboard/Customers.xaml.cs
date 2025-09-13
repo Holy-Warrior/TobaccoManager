@@ -79,11 +79,29 @@ namespace TobaccoManager.Views.Dashboard
             }
         }
 
-        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
+        private async void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
-            // Not implemented (per instructions)
-            MessageBox.Show("Add Customer is not implemented.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+            var addCustomerWindow = new Components.AddCustomers();
+
+            if (addCustomerWindow.ShowDialog() == true)
+            {
+                var newCustomer = addCustomerWindow.NewCustomer;
+
+                try
+                {
+                    using var db = new TobaccoManager.Contexts.AppDbContext();
+                    db.Customers.Add(newCustomer);
+                    await db.SaveChangesAsync();
+
+                    _customers.Add(newCustomer);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to save new customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
+
 
         private void EditCustomer_Click(object sender, RoutedEventArgs e)
         {

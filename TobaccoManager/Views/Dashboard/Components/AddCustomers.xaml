@@ -1,0 +1,30 @@
+﻿<Window x:Class="TobaccoManager.Views.Dashboard.Components.AddCustomers"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TobaccoManager.Views.Dashboard.Components"
+        mc:Ignorable="d"
+        Title="AddCustomers" Height="400" Width="530" WindowStartupLocation="CenterScreen">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Add Customer" FontSize="24" FontWeight="Bold"/>
+        <StackPanel Grid.Row="1" Margin="20,0,0,0">
+
+
+            <TextBlock Text="Name" Margin="0,10,0,0"/>
+            <TextBox x:Name="NameBox" Width="400" HorizontalAlignment="Left"/>
+
+            <TextBlock Text="Phone" Margin="0,10,0,0"/>
+            <TextBox x:Name="PhoneBox" Width="400" HorizontalAlignment="Left" TextChanged="Phone_TextChanged" Text=""/>
+
+            <TextBlock Text="Address" Margin="0,10,0,0"/>
+            <TextBox x:Name="AddressBox" Width="400" Height="50" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+
+            <Button Content="Add Customer" Margin="0,40,0,0" Width="200" Height="30" HorizontalAlignment="Left" Click="AddCustomer_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
