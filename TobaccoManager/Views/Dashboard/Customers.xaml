@@ -9,7 +9,63 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Customers">
 
-    <Grid>
-        <TextBlock Text="This is the customers page" FontSize="24" FontWeight="Bold"/>
-    </Grid>
+    <StackPanel Margin="20,40,20,20">
+
+        <!--  -->
+        <Grid Margin="10,10,10,20">
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- 1. Left: Title -->
+            <TextBlock Text="Customer list"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   Grid.Column="0"/>
+
+            <!-- 2. Center: Search Box -->
+            <TextBox x:Name="SearchBox"
+                 VerticalAlignment="Center"
+                 HorizontalAlignment="Center"
+                 TextChanged="SearchBox_TextChanged"
+                 Grid.Column="1" MinWidth="300"/>
+
+            <!-- 3. Right: Add Customer Button -->
+            <Button Content="Add Customer"
+                Width="120"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Click="AddCustomerButton_Click"
+                Grid.Column="2"/>
+        </Grid>
+
+        <!-- Customer List -->
+        <DataGrid x:Name="CustomerGrid"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  Margin="0,0,10,0"
+                  MouseDoubleClick="CustomerGrid_MouseDoubleClick"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
+                <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="*"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}" Width="2*"/>
+                <DataGridTemplateColumn Header="Actions" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Button Content="Edit" Margin="0,0,5,0" Click="EditCustomer_Click"/>
+                                <Button Content="Delete" Click="DeleteCustomer_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </StackPanel>
 </Page>
