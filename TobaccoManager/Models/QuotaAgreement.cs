@@ -19,12 +19,17 @@ namespace TobaccoManager.Models
             int customerId,
             decimal maximumQuota,
             DateOnly startDate,
-            bool isActive = true)
+            DateOnly? endDate = null,
+            bool isActive = true,
+            string? notes = null
+            )
         {
             CustomerId = customerId;
             MaximumQuota = maximumQuota;
             StartDate = startDate;
+            EndDate = endDate;
             IsActive = isActive;
+            Notes = notes;
         }
 
         [Key]
