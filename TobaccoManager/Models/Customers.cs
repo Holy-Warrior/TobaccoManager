@@ -36,5 +36,20 @@ namespace TobaccoManager.Models
         public required string Name { get; set; }
         public string? Phone { get; set; }
         public string? Address { get; set; }
+        public List<QuotaAgreement> QuotaAgreements { get; set; } = new();
+        public List<Stock> Stocks { get; set; } = new();
+
+        // Returns the latest or first quota agreement
+        public QuotaAgreement? LatestAgreement => QuotaAgreements.FirstOrDefault();
+
+        // Exposed for DataGrid Binding
+        public string? AgreementIdDisplay => LatestAgreement?.Id.ToString() ?? "—";
+        public string? QuotaDisplay => LatestAgreement?.MaximumQuota.ToString("0.##") ?? "—";
+        public string? StartDateDisplay => LatestAgreement?.StartDate.ToString("yyyy-MM-dd") ?? "—";
+        public string? EndDateDisplay => LatestAgreement?.EndDate?.ToString("yyyy-MM-dd") ?? "—";
+        public string StatusDisplay => LatestAgreement?.IsActive == true ? "Active" : (LatestAgreement == null ? "—" : "Inactive");
+        public bool HasAgreement => LatestAgreement != null;
+
+
     }
 }

@@ -9,6 +9,7 @@ namespace TobaccoManager.Contexts
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Stock> Stocks { get; set; }
         public DbSet<Bundle> Bundles { get; set; }
+        public DbSet<QuotaAgreement> QuotaAgreements { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -25,6 +26,12 @@ namespace TobaccoManager.Contexts
             modelBuilder.Entity<Bundle>()
                 .Property(b => b.LeafGrade)
                 .HasConversion<string>();
+                
+            modelBuilder.Entity<QuotaAgreement>()
+                .HasOne(q => q.Customer)
+                .WithMany(c => c.QuotaAgreements)
+                .HasForeignKey(q => q.CustomerId)
+                .OnDelete(DeleteBehavior.Cascade); // Delete agreements when customer is deleted
         }
     }
 }
