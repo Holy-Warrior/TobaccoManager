@@ -5,11 +5,62 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TobaccoManager.Views.Dashboard"
       mc:Ignorable="d" 
-      Background="White"
+      Background="white"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Products">
 
-    <Grid>
-        <TextBlock Text="Welcome to the Products Page" FontSize="24" FontWeight="Bold" />
-    </Grid>
+    <StackPanel Margin="20,40,20,20">
+        <Grid Margin="10,10,10,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Stock list"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Grid.Column="0"/>
+
+            <TextBox x:Name="SearchBox"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center"
+                     TextChanged="SearchBox_TextChanged"
+                     Grid.Column="1" MinWidth="300"/>
+
+            <Button Content="Add Stock"
+                    Width="120"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Click="AddStockButton_Click"
+                    Grid.Column="2"/>
+        </Grid>
+
+        <DataGrid x:Name="StockGrid"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  IsReadOnly="True"
+                  Margin="0,0,10,0"
+                  MouseDoubleClick="StockGrid_MouseDoubleClick" VerticalAlignment="Center"
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="Auto" />
+                <DataGridTextColumn Header="Price" Binding="{Binding Price}" Width="*"/>
+                <DataGridTextColumn Header="Date Received" Binding="{Binding DateReceived}" Width="*"/>
+                <DataGridTextColumn Header="Date Paid" Binding="{Binding DatePaid}" Width="*"/>
+                <DataGridTextColumn Header="No. of Bundles" Binding="{Binding NoOfBundles}" Width="*"/>
+                <DataGridTextColumn Header="Grand Total Price" Binding="{Binding GrandTotalPrice}" Width="*"/>
+                <DataGridTemplateColumn Header="Actions" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Button Content="Edit" Margin="0,0,5,0" Click="EditStock_Click"/>
+                                <Button Content="Delete" Click="DeleteStock_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </Page>
