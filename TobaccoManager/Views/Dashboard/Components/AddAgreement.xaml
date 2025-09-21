@@ -1,0 +1,51 @@
+﻿<Window x:Class="TobaccoManager.Views.Dashboard.Components.AddAgreement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Add Quota Agreement"
+        Height="370"
+        Width="500"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    
+    <Grid Margin="20,20,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <TextBlock Text="New Quota Agreement" FontSize="24" FontWeight="Bold" />
+
+        <!-- Form -->
+        <StackPanel Grid.Row="1" Margin="20,0,0,0">
+            <TextBlock Text="Maximum Quota (kg)" Margin="0,10,0,5"/>
+            <TextBox x:Name="QuotaBox" Width="400" />
+
+            <TextBlock Text="Start Date" Margin="0,10,0,5"/>
+            <DatePicker x:Name="StartDatePicker" Width="400"/>
+
+            <TextBlock Text="End Date (Optional)" Margin="0,10,0,5"/>
+            <DatePicker x:Name="EndDatePicker" Width="400"/>
+
+            <TextBlock Text="Notes (Optional)" Margin="0,10,0,5"/>
+            <TextBox x:Name="NotesBox" Width="400" Height="50" TextWrapping="Wrap"/>
+
+            <Grid Margin="0,20,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Cancel"
+                        Style="{StaticResource CancelButton}"
+                        Width="200"
+                        Click="Cancel_Click"/>
+
+                <Button Grid.Column="1" Content="Add Agreement"
+                        Width="200"
+                        Click="AddAgreement_Click"/>
+            </Grid>
+        </StackPanel>
+
+    </Grid>
+</Window>
