@@ -113,46 +113,35 @@ namespace TobaccoManager.Views.Dashboard
 
         private async void EditCustomer(Customer customer)
         {
-            // Prompt for all editable fields, enforcing model constraints
-            string name = Microsoft.VisualBasic.Interaction.InputBox($"Edit Name for {customer.Name}", "Edit Customer", customer.Name);
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                MessageBox.Show("Name is required.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
+            var editCustomerWindow = new Components.EditCustomer(customer.Id);
 
-            string phone = Microsoft.VisualBasic.Interaction.InputBox($"Edit Phone for {customer.Name}", "Edit Customer", customer.Phone ?? "");
-            string address = Microsoft.VisualBasic.Interaction.InputBox($"Edit Address for {customer.Name}", "Edit Customer", customer.Address ?? "");
-
-            if (string.IsNullOrWhiteSpace(phone) && string.IsNullOrWhiteSpace(address))
+            if (editCustomerWindow.ShowDialog() == true)
             {
-                MessageBox.Show("At least one of phone or address must be provided.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-
-            try
-            {
-                using var db = new TobaccoManager.Contexts.AppDbContext();
-                var dbCustomer = db.Customers.FirstOrDefault(c => c.Id == customer.Id);
-                if (dbCustomer == null)
+                try
                 {
-                    MessageBox.Show("Customer not found in database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return;
-                }
-                dbCustomer.Name = name;
-                dbCustomer.Phone = string.IsNullOrWhiteSpace(phone) ? null : phone;
-                dbCustomer.Address = string.IsNullOrWhiteSpace(address) ? null : address;
-                await db.SaveChangesAsync();
+                    using var db = new TobaccoManager.Contexts.AppDbContext();
+                    var dbCustomer = await Task.Run(() => db.Customers.FirstOrDefault(c => c.Id == customer.Id));
+                    if (dbCustomer != null)
+                    {
+                        db.Customers.Update(dbCustomer);
+                        await db.SaveChangesAsync();
 
-                // Update in-memory object
-                customer.Name = dbCustomer.Name;
-                customer.Phone = dbCustomer.Phone;
-                customer.Address = dbCustomer.Address;
-                _customerView.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to update customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        // Refresh the local collection
+                        var index = _customers.IndexOf(customer);
+                        if (index >= 0)
+                        {
+                            _customers[index] = dbCustomer;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Customer not found in database.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Failed to update customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
