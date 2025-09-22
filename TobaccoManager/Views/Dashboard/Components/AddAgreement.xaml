@@ -5,9 +5,9 @@
         Height="370"
         Width="500"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="NoResize">
-    
-    <Grid Margin="20,20,20,0">
+        >
+
+    <Grid Margin="30,10,30,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -19,16 +19,16 @@
         <!-- Form -->
         <StackPanel Grid.Row="1" Margin="20,0,0,0">
             <TextBlock Text="Maximum Quota (kg)" Margin="0,10,0,5"/>
-            <TextBox x:Name="QuotaBox" Width="400" />
+            <TextBox x:Name="QuotaBox" Width="Auto" />
 
             <TextBlock Text="Start Date" Margin="0,10,0,5"/>
-            <DatePicker x:Name="StartDatePicker" Width="400"/>
+            <DatePicker x:Name="StartDatePicker" Width="Auto"/>
 
             <TextBlock Text="End Date (Optional)" Margin="0,10,0,5"/>
-            <DatePicker x:Name="EndDatePicker" Width="400"/>
+            <DatePicker x:Name="EndDatePicker" Width="Auto"/>
 
             <TextBlock Text="Notes (Optional)" Margin="0,10,0,5"/>
-            <TextBox x:Name="NotesBox" Width="400" Height="50" TextWrapping="Wrap"/>
+            <TextBox x:Name="NotesBox" Width="Auto" Height="50" TextWrapping="Wrap"/>
 
             <Grid Margin="0,20,0,0">
                 <Grid.ColumnDefinitions>
@@ -38,11 +38,11 @@
 
                 <Button Content="Cancel"
                         Style="{StaticResource CancelButton}"
-                        Width="200"
+                        Width="Auto" Margin="0,0,10,0"
                         Click="Cancel_Click"/>
 
                 <Button Grid.Column="1" Content="Add Agreement"
-                        Width="200"
+                        Width="Auto"
                         Click="AddAgreement_Click"/>
             </Grid>
         </StackPanel>

@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TobaccoManager.Views.Dashboard.Components"
-        mc:Ignorable="d"
-        Title="EditCustomer" Height="335" Width="500">
-    <Grid Margin="30">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="EditCustomer" Height="350" Width="500">
+    <Grid Margin="30,10,30,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
