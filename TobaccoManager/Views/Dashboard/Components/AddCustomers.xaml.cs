@@ -29,7 +29,7 @@ namespace TobaccoManager.Views.Dashboard.Components
             InitializeComponent();
         }
 
-        private void AddCustomer_Click(object sender, RoutedEventArgs e)
+        private void AddCustomerButton_Click(object sender, RoutedEventArgs e)
         {
             // Validation: Name required, at least one of phone or address
             var name = NameBox.Text.Trim();
@@ -46,18 +46,70 @@ namespace TobaccoManager.Views.Dashboard.Components
                 MessageBox.Show("At least one of phone or address must be provided.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
+            // check phone is valid
+            if (!string.IsNullOrWhiteSpace(phone) && !IsValidPhoneNumber(phone))
+            {
+                MessageBox.Show("Invalid phone number format.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             // Create new customer object
-            NewCustomer = new Customer(name, string.IsNullOrWhiteSpace(phone) ? null : phone, string.IsNullOrWhiteSpace(address) ? null : address);
+            NewCustomer = new Customer(
+                    name = name,
+                    phone = string.IsNullOrWhiteSpace(phone) ? null : phone,
+                    address = string.IsNullOrWhiteSpace(address) ? null : address
+                );
 
-            // Signal that user submitted data
+            try
+            {
+                using var db = new Contexts.AppDbContext();
+                db.Customers.Add(NewCustomer);
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to add customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                NewCustomer = null;
+                return;
+            }
+
+            // check `AddAgreementCheckBox` is checked
+            if (AddAgreementCheckBox.IsChecked == true)
+            {
+                var addAgreementWindow = new AddAgreement(NewCustomer.Id);
+                var result = addAgreementWindow.ShowDialog();
+                if (result == true)
+                {
+                    MessageBox.Show("Agreement added successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Agreement addition cancelled or failed.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+
             this.DialogResult = true;
             this.Close();
         }
 
-        private void Phone_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private bool IsValidPhoneNumber(object phone)
         {
-            // Optional: Add phone number formatting logic here
+            var phoneStr = phone as string;
+            if (string.IsNullOrWhiteSpace(phoneStr))
+                return true; // Empty phone is considered valid here
+
+            // Simple validation: allow digits, spaces, dashes, parentheses, and plus sign
+            foreach (char c in phoneStr)
+            {
+                if (!char.IsDigit(c) && c != ' ' && c != '-' && c != '(' && c != ')' && c != '+')
+                    return false;
+            }
+            return true;
+        }
+
+        private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+            this.Close();
         }
     }
 }

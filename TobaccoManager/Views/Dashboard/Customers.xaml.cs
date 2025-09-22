@@ -86,18 +86,9 @@ namespace TobaccoManager.Views.Dashboard
             if (addCustomerWindow.ShowDialog() == true)
             {
                 var newCustomer = addCustomerWindow.NewCustomer;
-
-                try
+                if (newCustomer != null)
                 {
-                    using var db = new TobaccoManager.Contexts.AppDbContext();
-                    db.Customers.Add(newCustomer);
-                    await db.SaveChangesAsync();
-
                     _customers.Add(newCustomer);
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Failed to save new customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

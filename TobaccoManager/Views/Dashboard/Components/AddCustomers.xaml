@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TobaccoManager.Views.Dashboard.Components"
         mc:Ignorable="d"
-        Title="AddCustomers" Height="400" Width="530" WindowStartupLocation="CenterScreen">
-    <Grid Margin="30">
+        Title="AddCustomers" Height="360" Width="500" WindowStartupLocation="CenterScreen">
+    <Grid Margin="30,10,30,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -16,15 +16,35 @@
 
 
             <TextBlock Text="Name" Margin="0,10,0,0"/>
-            <TextBox x:Name="NameBox" Width="400" HorizontalAlignment="Left"/>
+            <TextBox x:Name="NameBox" Width="Auto" />
 
             <TextBlock Text="Phone" Margin="0,10,0,0"/>
-            <TextBox x:Name="PhoneBox" Width="400" HorizontalAlignment="Left" TextChanged="Phone_TextChanged" Text=""/>
+            <TextBox x:Name="PhoneBox" Width="Auto" />
 
             <TextBlock Text="Address" Margin="0,10,0,0"/>
-            <TextBox x:Name="AddressBox" Width="400" Height="50" HorizontalAlignment="Left" TextWrapping="Wrap"/>
+            <TextBox x:Name="AddressBox" Width="Auto" Height="50" TextWrapping="Wrap"/>
 
-            <Button Content="Add Customer" Margin="0,40,0,0" Width="200" Height="30" HorizontalAlignment="Left" Click="AddCustomer_Click"/>
+            <!-- Adding a checkbox for prompting to add agreement which is checked by default -->
+            <CheckBox x:Name="AddAgreementCheckBox" 
+                      Content="Prompt to add agreement upon adding customer" 
+                      Margin="0,10,0,0" IsChecked="True"/>
+
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Cancel"
+                    Style="{StaticResource CancelButton}"
+                    Width="Auto" x:Name="CancelButton"
+                    Margin="0,0,10,0"
+                    Click="CancelButton_Click" IsCancel="True"/>
+
+                <Button Grid.Column="1" Content="Add Customer"
+                    Width="Auto" x:Name="AddCustomerButton"
+                    Click="AddCustomerButton_Click" IsDefault="True"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
