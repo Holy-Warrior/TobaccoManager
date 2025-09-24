@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using TobaccoManager.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace TobaccoManager.Views.Dashboard
 {
@@ -47,7 +48,7 @@ namespace TobaccoManager.Views.Dashboard
             try
             {
                 using var db = new TobaccoManager.Contexts.AppDbContext();
-                var dbCustomers = await Task.Run(() => db.Customers.ToList());
+                var dbCustomers = await Task.Run(() => db.Customers.Include(c => c.QuotaAgreements).ToList());
                 foreach (var c in dbCustomers)
                     _customers.Add(c);
             }
