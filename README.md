@@ -10,8 +10,9 @@
 
 - 🔐 User Authentication (Login, Register, Password Recovery)
 - 📦 Stock and Bundle Management
-- 🧾 Customer Tracking
-- 📅 Dashboard with Navigation Views
+- 🧾 Customer Tracking with Quota Agreements
+- 📅 Calendar view of stock and quota-agreement dates
+- 👤 Profile page for editing account details and password
 - 🌿 Clean and modern interface with custom icons
 
 ---
