@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TobaccoManager.Models;
 using TobaccoManager.Contexts;
+using TobaccoManager.Services;
 
 namespace TobaccoManager.Views.Auth
 {
@@ -46,6 +47,7 @@ namespace TobaccoManager.Views.Auth
 
             if (user != null)
             {
+                Session.CurrentUser = user;
                 Application.Current.MainWindow.Content = new TobaccoManager.Views.Dashboard.Dash();
             }
             else

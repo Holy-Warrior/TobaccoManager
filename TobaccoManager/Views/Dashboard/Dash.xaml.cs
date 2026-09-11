@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TobaccoManager.Services;
 
 namespace TobaccoManager.Views.Dashboard
 {
@@ -23,6 +24,7 @@ namespace TobaccoManager.Views.Dashboard
         public Dash()
         {
             InitializeComponent();
+            UsernameLabel.Content = Session.CurrentUser?.Name ?? "Guest";
             DashMain.Content = new Dashboard();
         }
         
@@ -75,6 +77,7 @@ namespace TobaccoManager.Views.Dashboard
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            Session.CurrentUser = null;
             Application.Current.MainWindow.Content = new Auth.Auth();
         }
     }
