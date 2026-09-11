@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using TobaccoManager.Models;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Microsoft.EntityFrameworkCore;
 
 namespace TobaccoManager.Views.Dashboard
 {
@@ -194,6 +195,34 @@ namespace TobaccoManager.Views.Dashboard
             if (_stockGrid.SelectedItem is Stock stock)
             {
                 EditStock(stock);
+            }
+        }
+
+        private void ManageBundles_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is not Button btn || btn.DataContext is not Stock stock)
+                return;
+
+            var manageBundlesWindow = new Components.ManageBundles(stock.Id);
+            manageBundlesWindow.ShowDialog();
+            RefreshStockBundles(stock);
+        }
+
+        private void RefreshStockBundles(Stock stock)
+        {
+            try
+            {
+                using var db = new TobaccoManager.Contexts.AppDbContext();
+                var dbStock = db.Stocks.Include(s => s.Bundles).FirstOrDefault(s => s.Id == stock.Id);
+                if (dbStock != null)
+                {
+                    stock.Bundles = dbStock.Bundles;
+                    _stockView.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to refresh bundles: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
