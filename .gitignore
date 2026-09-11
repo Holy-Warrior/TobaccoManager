@@ -362,3 +362,8 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 .vscode/extensions.json
+
+# TobaccoManager local SQLite database (runtime-generated, not sample data)
+*.db
+*.db-shm
+*.db-wal
