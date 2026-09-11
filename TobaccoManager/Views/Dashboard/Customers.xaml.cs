@@ -109,16 +109,13 @@ namespace TobaccoManager.Views.Dashboard
 
             if (editCustomerWindow.ShowDialog() == true)
             {
+                // The dialog already persisted its changes; just refresh our local copy.
                 try
                 {
                     using var db = new TobaccoManager.Contexts.AppDbContext();
-                    var dbCustomer = await Task.Run(() => db.Customers.FirstOrDefault(c => c.Id == customer.Id));
+                    var dbCustomer = await Task.Run(() => db.Customers.Include(c => c.QuotaAgreements).FirstOrDefault(c => c.Id == customer.Id));
                     if (dbCustomer != null)
                     {
-                        db.Customers.Update(dbCustomer);
-                        await db.SaveChangesAsync();
-
-                        // Refresh the local collection
                         var index = _customers.IndexOf(customer);
                         if (index >= 0)
                         {
@@ -132,7 +129,7 @@ namespace TobaccoManager.Views.Dashboard
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Failed to update customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Failed to refresh customer: {ex.Message}", "Database Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }

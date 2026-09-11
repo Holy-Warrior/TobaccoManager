@@ -20,7 +20,7 @@ namespace TobaccoManager.Views.Dashboard.Components
     public partial class EditCustomer : Window
     {
         private int _customerId;
-        private Models.Customer _customer;
+        private Models.Customer? _customer;
         public EditCustomer(int customerId)
         {
             ArgumentOutOfRangeException.ThrowIfNegative(customerId);
@@ -32,7 +32,7 @@ namespace TobaccoManager.Views.Dashboard.Components
         private void LoadCustomerData()
         {
             using var db = new Contexts.AppDbContext();
-            _customer = db.Customers.FirstOrDefault(c => c.Id == _customerId)!;
+            _customer = db.Customers.FirstOrDefault(c => c.Id == _customerId);
             if (_customer != null)
             {
                 // Populate the UI fields with customer data
@@ -63,6 +63,9 @@ namespace TobaccoManager.Views.Dashboard.Components
 
         private void EditCustomerButton_Click(object sender, RoutedEventArgs e)
         {
+            if (_customer == null)
+                return;
+
             // Validation: Name required, at least one of phone or address
             var name = NameBox.Text.Trim();
             var phone = PhoneBox.Text.Trim();

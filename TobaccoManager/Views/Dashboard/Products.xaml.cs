@@ -82,9 +82,8 @@ namespace TobaccoManager.Views.Dashboard
         private async void AddStockButton_Click(object sender, RoutedEventArgs e)
         {
             var addStockWindow = new Components.AddProducts();
-            if (addStockWindow.ShowDialog() == true)
+            if (addStockWindow.ShowDialog() == true && addStockWindow.NewStock is Stock newStock)
             {
-                var newStock = addStockWindow.NewStock;
                 try
                 {
                     using var db = new TobaccoManager.Contexts.AppDbContext();

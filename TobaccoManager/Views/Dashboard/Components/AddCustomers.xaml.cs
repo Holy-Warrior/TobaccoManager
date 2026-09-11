@@ -54,9 +54,9 @@ namespace TobaccoManager.Views.Dashboard.Components
             }
             // Create new customer object
             NewCustomer = new Customer(
-                    name = name,
-                    phone = string.IsNullOrWhiteSpace(phone) ? null : phone,
-                    address = string.IsNullOrWhiteSpace(address) ? null : address
+                    name: name,
+                    phone: string.IsNullOrWhiteSpace(phone) ? null : phone,
+                    address: string.IsNullOrWhiteSpace(address) ? null : address
                 );
 
             try
