@@ -7,6 +7,22 @@ namespace TobaccoManager.Services
     /// </summary>
     public static class Session
     {
-        public static User? CurrentUser { get; set; }
+        private static User? _currentUser;
+
+        public static User? CurrentUser
+        {
+            get => _currentUser;
+            set
+            {
+                _currentUser = value;
+                CurrentUserChanged?.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// Raised whenever CurrentUser is set, including edits made from the Profile page,
+        /// so views showing the user's name (e.g. the dashboard sidebar) can refresh.
+        /// </summary>
+        public static event Action? CurrentUserChanged;
     }
 }

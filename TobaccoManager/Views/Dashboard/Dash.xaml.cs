@@ -24,8 +24,14 @@ namespace TobaccoManager.Views.Dashboard
         public Dash()
         {
             InitializeComponent();
-            UsernameLabel.Content = Session.CurrentUser?.Name ?? "Guest";
+            Session.CurrentUserChanged += UpdateUsernameLabel;
+            UpdateUsernameLabel();
             DashMain.Content = new Dashboard();
+        }
+
+        private void UpdateUsernameLabel()
+        {
+            UsernameLabel.Content = Session.CurrentUser?.Name ?? "Guest";
         }
         
         private void HighlightNavButton(object sender)
@@ -77,6 +83,7 @@ namespace TobaccoManager.Views.Dashboard
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            Session.CurrentUserChanged -= UpdateUsernameLabel;
             Session.CurrentUser = null;
             Application.Current.MainWindow.Content = new Auth.Auth();
         }
